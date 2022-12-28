@@ -15,6 +15,7 @@ public class AppiumCapabilities {
         cap.setCapability("browserName", browserName);
         cap.setCapability("autoGrantPermissions", "true");
         cap.setCapability("isHeadless", true);
+        cap.setCapability("avdArgs", "-no-window");
 
         return cap;
     }

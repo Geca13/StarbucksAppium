@@ -20,7 +20,7 @@ public class DriverFactory {
 
     public void getAndroidDriver() throws MalformedURLException {
         AppiumCapabilities cap = new AppiumCapabilities();
-        DesiredCapabilities capabilities = cap.returnCapabilities("chrome","Nexus 6", "11");
+        DesiredCapabilities capabilities = cap.returnCapabilities("chrome","Android Emulator", "11");
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         WebDriverRunner.setWebDriver(driver);
 
