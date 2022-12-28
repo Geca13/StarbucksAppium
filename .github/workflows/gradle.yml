@@ -4,26 +4,30 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        api-level:  [25]
+        target: [default]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Install Android SDK
-      run: |
-        mkdir -p $HOME/android-sdk
-        wget -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip
-        unzip -q android-sdk-tools.zip -d $HOME/android-sdk
-        rm android-sdk-tools.zip
-        echo "export ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
-    - name: Set up Android environment
-      run: |
-        echo "y" | sdkmanager "build-tools;29.0.2" "platform-tools" "platforms;android-29"
-        echo no | avdmanager create avd -n test -k "system-images;android-29;google_apis;x86"
-    - name: Install dependencies
-      run: ${ANDROID_HOME}/tools/bin/sdkmanager "build-tools;29.0.2" "platform-tools" "platforms;android-29"
-    - name: Run Appium tests with Selenium
-      run: gradle test
+    - uses: actions/setup-node@2
+      with:
+        node-version: '16'
+    - run: |
+            npm install -g appium@v1.20.2
+            appium -v
+            appium &>/dev/null &
+    - name: Run Appium Tests
+      uses: reactivecircus/android-emulator-runner@v1
+      with:
+        api-level: ${{ matrix.api-level }}
+        target: ${{ matrix.target }}
+        arch: x86_64
+        profile: Nexus 6
+        script: gradle test
 
