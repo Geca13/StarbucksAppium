@@ -22,7 +22,7 @@ jobs:
             npm install -g appium@v1.20.2
             appium -v
             appium &>/dev/null &
-    - uses: actions/setup-android@v4
+    - uses: android-actions/setup-android@v2
     - name: Run Appium Tests
       uses: reactivecircus/android-emulator-runner@v1
       with:
