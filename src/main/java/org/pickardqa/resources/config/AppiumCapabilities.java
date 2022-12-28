@@ -8,7 +8,7 @@ public class AppiumCapabilities {
 
         DesiredCapabilities cap = new DesiredCapabilities();
 
-        cap.setCapability("automationName", "uiautomator2");
+        cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("deviceName", deviceName);
         cap.setCapability("platformName", "Android");
         cap.setCapability("platformVersion", deviceVersion);
