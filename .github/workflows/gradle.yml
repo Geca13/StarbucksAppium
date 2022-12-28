@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         api-level:  [25]
@@ -22,6 +22,7 @@ jobs:
             npm install -g appium@v1.20.2
             appium -v
             appium &>/dev/null &
+    - uses: actions/setup-android@v3
     - name: Run Appium Tests
       uses: reactivecircus/android-emulator-runner@v1
       with:
@@ -30,4 +31,5 @@ jobs:
         arch: x86_64
         profile: Nexus 6
         script: gradle test
+
 
