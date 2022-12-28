@@ -14,6 +14,7 @@ public class AppiumCapabilities {
         cap.setCapability("platformVersion", deviceVersion);
         cap.setCapability("browserName", browserName);
         cap.setCapability("autoGrantPermissions", "true");
+        cap.setCapability("isHeadless", true);
 
         return cap;
     }
