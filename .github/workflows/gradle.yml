@@ -31,6 +31,7 @@ jobs:
         target: ${{ matrix.target }}
         arch: x86_64
         profile: Nexus 6
-        script: ./gradlew test --tests pickard.gui.AppTests
+        script: ./gradlew test --tests pickardqa.gui.AppTests
+
 
 
