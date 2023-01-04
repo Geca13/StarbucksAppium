@@ -1,14 +1,10 @@
-name: Appium Testss
+name: Run Appium Tests
 
 on: [push]
 
 jobs:
   build:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        api-level:  [30]
-        target: [default]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 17
@@ -19,19 +15,12 @@ jobs:
       with:
         node-version: '16'
     - run: |
-            npm install -g appium
-            appium -v
-            appium &>/dev/null &
-            chmod +x gradlew
+        npm install -g appium
+        appium -v
+        appium &>/dev/null &
+        chmod +x gradlew
     - uses: android-actions/setup-android@v2
     - name: Run Appium Tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: ${{ matrix.api-level }}
-        target: ${{ matrix.target }}
-        arch: x86_64
-        profile: Nexus 6
-        script: ./gradlew test --tests pickardqa.gui.AppTests
-
+      run: ./gradlew test --tests pickardqa.gui.AppTests
 
 
