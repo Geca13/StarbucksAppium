@@ -22,6 +22,7 @@ jobs:
             npm install -g appium
             appium -v
             appium &>/dev/null &
+            chmod +x gradlew
     - uses: android-actions/setup-android@v2
     - name: Run Appium Tests
       uses: reactivecircus/android-emulator-runner@v2
