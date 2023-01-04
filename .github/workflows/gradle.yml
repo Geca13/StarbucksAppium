@@ -21,6 +21,11 @@ jobs:
         chmod +x gradlew
     - uses: android-actions/setup-android@v2
     - name: Run Appium Tests
-      run: ./gradlew test --tests pickardqa.gui.AppTests
-
+      run: |
+        # Set desired capabilities
+        export APPIUM_CAPS_PLATFORM_NAME=Android
+        export APPIUM_CAPS_PLATFORM_VERSION=9
+        export APPIUM_CAPS_DEVICE_NAME=emulator-5554
+        # Run tests
+        ./gradlew test --tests pickardqa.gui.AppTests
 
