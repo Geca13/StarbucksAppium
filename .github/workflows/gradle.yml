@@ -29,8 +29,7 @@ jobs:
         target: ${{ matrix.target }}
         arch: x86_64
         profile: Pixel3
-        script: ./gradlew test --info # running our test with info to check the results
+        #script: ./gradlew test --info # running our test with info to check the results
   
-
-       # ./gradlew test --tests pickardqa.gui.AppTests
+./gradlew test --tests pickardqa.gui.AppTests
 
